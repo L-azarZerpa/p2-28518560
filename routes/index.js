@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Pablo Zerpa,31 786 816, seccion 3' });
+  res.render('index', { title: 'Eleazar Zerpa,28 518 560, seccion 3' });
 });
 
 router.post('/', function(req, res, next) {
