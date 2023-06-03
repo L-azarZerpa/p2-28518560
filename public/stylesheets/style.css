@@ -245,6 +245,7 @@ body
     height: 40px;
     text-align: center;
     font-size: 18px;
+    color: white;
 }
 
 .form-register a {
@@ -258,7 +259,7 @@ body
 }
 
 
-.form-register .botons {
+.form-register .g-recaptcha{
     width: 100%;
     background: #1f53c5;
     border: none;
