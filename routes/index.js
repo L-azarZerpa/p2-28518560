@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer');
 var request = require('request');
 const ua = require('universal-analytics');
 
-const visitor = ua(process.env.UA_GA);
+const visitor = ua('process.env.UA_GA');
 
 const myKey = process.env.MY_KEY
 
