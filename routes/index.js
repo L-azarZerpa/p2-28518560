@@ -7,51 +7,16 @@ const nodemailer = require('nodemailer');
 var request = require('request');
 const ua = require('universal-analytics');
 
+const visitor = ua(process.env.UA_GA);
 
-
-const visitor = ua(process.env.UA);
-
+const myKey = process.env.MY_KEY
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Eleazar Zerpa,28 518 560, seccion 3' });
+  res.render('index', { title: 'Eleazar Zerpa,28 518 560, seccion 3',myKey:myKey  });
 });
 
 visitor.pageview('/page1').send();
 visitor.event('Category', 'Action', 'Label', 42).send();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 router.post('/', async function(req, res, next) {
   let  name = req.body.name;
@@ -64,30 +29,30 @@ router.post('/', async function(req, res, next) {
     const response = await fetch('https://api.ipify.org/?format=json');
     const data = await response.json();
     ip = data.ip;
-    console.log('La dirección IP del usuario es: ' + ip);
+    
 
     const url = 'http://api.ipstack.com/' + ip + '?access_key=470211dbb6394999a95614fd5799d524';
     const response2 = await fetch(url);
     const data2 = await response2.json();
     country = data2.country_name;
-    console.log('El país del usuario es: ' + country);
+    
 
 
-    enviarMail = async () => {
+    emailSubmit = async () => {
       const config = {
           host : 'smtp.gmail.com',
           port : 587,
           auth : {
-              user : process.env.USER,
+              user : process.env.USER_EMAIL,
     
-              pass : process.env.PASS
+              pass : process.env.PASS_EMAIL
           }
       }
-      console.log(config.auth.user);
+      
   
       const mensaje = {
-          from : process.env.USER,
-          to : process.env.TO,
+          from : process.env.USER_EMAIL,
+          to : process.env.TO_EMAIL,
           subject : 'correo de pruebas',
           text : ' nombre: ' + name + ' comentario: ' + comment + ' email: ' + email + ' fecha: ' + date + ' la ip: ' + ip + ' el pais es: ' + country
       }
@@ -97,46 +62,14 @@ router.post('/', async function(req, res, next) {
       console.log(info);
   } 
   
-  enviarMail();
+  emailSubmit();
 
-  
-
-
-
-
-
-
-    db.insert(name, email, comment, date, ip, country);
+  db.insert(name, email, comment, date, ip, country);
     res.redirect('/');
   } catch (error) {
     console.error(error);
   }
 })
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 router.get('/contactos', function(req, res, next) {
   db.select(function (rows) {
