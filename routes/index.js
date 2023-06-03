@@ -8,11 +8,11 @@ var request = require('request');
 const ua = require('universal-analytics');
 
 const visitor = ua('process.env.UA_GA');
-
+const ua2 = process.env.UA_GA2
 const myKey = process.env.MY_KEY
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Eleazar Zerpa,28 518 560, seccion 3',myKey:myKey, visitor:visitor  });
+  res.render('index', { title: 'Eleazar Zerpa,28 518 560, seccion 3',myKey:myKey,ua2:ua2 });
 });
 
 visitor.pageview('/page1').send();
