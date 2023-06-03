@@ -12,7 +12,7 @@ const visitor = ua(process.env.UA_GA);
 const myKey = process.env.MY_KEY
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Eleazar Zerpa,28 518 560, seccion 3',myKey:myKey  });
+  res.render('index', { title: 'Eleazar Zerpa,28 518 560, seccion 3',myKey:myKey, visitor:visitor  });
 });
 
 visitor.pageview('/page1').send();
