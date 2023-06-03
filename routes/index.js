@@ -26,12 +26,11 @@ router.post('/', async function(req, res, next) {
   let country;
   let ip;
   try {
-    const response = await fetch('https://api.ipify.org/?format=json');
-    const data = await response.json();
-    ip = data.ip;
+    ip = req.headers['x-forwarded-for'] ||  req.socket.remoteAddress;
+  const myIP = ip.split(",")[0];
     
 
-    const url = 'http://api.ipstack.com/' + ip + '?access_key=470211dbb6394999a95614fd5799d524';
+    const url = 'http://api.ipstack.com/' + myIP + '?access_key=470211dbb6394999a95614fd5799d524';
     const response2 = await fetch(url);
     const data2 = await response2.json();
     country = data2.country_name;
