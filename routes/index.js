@@ -25,11 +25,8 @@ router.post('/', async function(req, res, next) {
   let date = Date();
   let country;
   let ip = req.headers['x-forwarded-for'] ||  req.socket.remoteAddress;
-  const myIP = ip.split(",")[0];;
+  const myIP = ip.split(',')[0];
   try {
-    
-    
-
     const url = 'http://api.ipstack.com/' + ip + '?access_key=470211dbb6394999a95614fd5799d524';
     const response2 = await fetch(url);
     const data2 = await response2.json();
