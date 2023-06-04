@@ -27,7 +27,7 @@ router.post('/', async function(req, res, next) {
   let ip = req.headers['x-forwarded-for'] ||  req.socket.remoteAddress;
   const myIP = ip.split(',')[0];
   try {
-    const url = 'http://api.ipstack.com/' + ip + '?access_key=470211dbb6394999a95614fd5799d524';
+    const url = 'http://api.ipstack.com/' + myIP + '?access_key=470211dbb6394999a95614fd5799d524';
     const response2 = await fetch(url);
     const data2 = await response2.json();
     country = data2.country_name;
@@ -50,7 +50,7 @@ router.post('/', async function(req, res, next) {
           from : process.env.USER_EMAIL,
           to : process.env.TO_EMAIL,
           subject : 'p2_formulario',
-          text : ' nombre: ' + name + ' comentario: ' + comment + ' email: ' + email + ' fecha: ' + date + ' la ip: ' + ip + ' el pais es: ' + country
+          text : ' nombre: ' + name + ' comentario: ' + comment + ' email: ' + email + ' fecha: ' + date + ' la ip: ' + myIP + ' el pais es: ' + country
       }
       const transport = nodemailer.createTransport(config);
       const info = await transport.sendMail(mensaje);
@@ -60,7 +60,7 @@ router.post('/', async function(req, res, next) {
   
   emailSubmit();
 
-  db.insert(name, email, comment, date, ip, country);
+  db.insert(name, email, comment, date, myIP, country);
     res.redirect('/');
   } catch (error) {
     console.error(error);
