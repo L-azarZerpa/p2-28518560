@@ -1,4 +1,5 @@
 require('dotenv').config()
+require('ejs')
 var express = require('express');
 const db = require('../database');
 var router = express.Router();
@@ -69,10 +70,9 @@ router.post('/', async function(req, res, next) {
 
 router.get('/contactos', function(req, res, next) {
   db.select(function (rows) {
-    console.log(rows);
+    res.render('contactos', { title: 'Registros del formulario',rows: rows,myKey:myKey,ua2:ua2 });
   });
-  res.send('ok');
 });
-
+z
 
 module.exports = router;
