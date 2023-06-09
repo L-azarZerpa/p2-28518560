@@ -73,6 +73,6 @@ router.get('/contactos', function(req, res, next) {
     res.render('contactos', { title: 'Registros del formulario',rows: rows,myKey:myKey,ua2:ua2 });
   });
 });
-z
+
 
 module.exports = router;
