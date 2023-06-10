@@ -7,17 +7,10 @@ const fetch = require('node-fetch');
 const nodemailer = require('nodemailer');
 var request = require('request');
 const ua = require('universal-analytics');
-const ogs = require('node-open-graph');
 
 const visitor = ua('process.env.UA_GA');
 const ua2 = process.env.UA_GA2
 const myKey = process.env.MY_KEY
-
-
-ogs.fetch('https://example.com').then((result) => {
-  console.log(result.data);
-});
-
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Eleazar Zerpa,28 518 560, seccion 3',myKey:myKey,ua2:ua2 });
