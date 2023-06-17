@@ -13,14 +13,19 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "express-session": "^1.17.3",
+    "google-auth-library": "^8.8.0",
     "http-errors": "~1.6.3",
     "json-server": "^0.17.3",
-    "json-server-auth": "^2.1.0",
     "morgan": "~1.9.1",
     "nodemailer": "^6.9.3",
     "opengraph": "^1.0.2",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
     "request": "^2.88.2",
     "sqlite3": "^5.1.6",
     "universal-analytics": "^0.5.3"
+  },
+  "devDependencies": {
+    "json-server-auth": "^2.1.0"
   }
 }
