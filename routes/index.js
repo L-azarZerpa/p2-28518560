@@ -160,16 +160,15 @@ router.post('/', async function(req, res, next) {
   let  email = req.body.email;
   let comment = req.body.comment;
   let date = Date();
-  let country;
+  const geoip = require('geoip-lite')
   let ip = req.headers['x-forwarded-for'] ||  req.socket.remoteAddress;
-  const myIP = ip.split(',')[0];
-  try {
-    const url = 'http://api.ipstack.com/' + myIP + '?access_key=470211dbb6394999a95614fd5799d524';
-    const response2 = await fetch(url);
-    const data2 = await response2.json();
-    country = data2.country_name;
+  const myIP ="186.92.113.134"//ip.split(',')[0];
+  let geo =geoip.lookup(myIP);
+  let country =geo.country
+  console.log(geo.country);
+  
     
-
+  try {
 
     emailSubmit = async () => {
       const config = {
@@ -203,6 +202,7 @@ router.post('/', async function(req, res, next) {
     console.error(error);
   }
 })
+
 
 
 

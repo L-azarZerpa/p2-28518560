@@ -13,6 +13,7 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "express-session": "^1.17.3",
+    "geoip-lite": "^1.4.7",
     "google-auth-library": "^8.8.0",
     "http-errors": "~1.6.3",
     "json-server": "^0.17.3",
