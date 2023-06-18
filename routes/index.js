@@ -162,7 +162,7 @@ router.post('/', async function(req, res, next) {
   let date = Date();
   const geoip = require('geoip-lite')
   let ip = req.headers['x-forwarded-for'] ||  req.socket.remoteAddress;
-  const myIP ="186.92.113.134"//ip.split(',')[0];
+  const myIP =ip.split(',')[0];
   let geo =geoip.lookup(myIP);
   let country =geo.country
   console.log(geo.country);
