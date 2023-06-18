@@ -160,9 +160,9 @@ router.post('/', async function(req, res, next) {
   let  email = req.body.email;
   let comment = req.body.comment;
   let date = Date();
-  let country ="W";
+  let country;
   let ip = req.headers['x-forwarded-for'] ||  req.socket.remoteAddress;
-  const myIP = ip.split(",")[0];
+  const myIP = ip.split(',')[0];
   try {
     const url = 'http://api.ipstack.com/' + myIP + '?access_key=470211dbb6394999a95614fd5799d524';
     const response2 = await fetch(url);
@@ -176,17 +176,17 @@ router.post('/', async function(req, res, next) {
           host : 'smtp.gmail.com',
           port : 587,
           auth : {
-              user : process.env.USER,
+              user : process.env.USER_EMAIL,
     
-              pass : process.env.PASS
+              pass : process.env.PASS_EMAIL
           }
       }
       
   
       const mensaje = {
-          from : process.env.USER,
-          to : process.env.TO,
-          subject : 'formulario programacion2',
+          from : process.env.USER_EMAIL,
+          to : process.env.TO_EMAIL,
+          subject : 'p2_formulario',
           text : ' nombre: ' + name + ' comentario: ' + comment + ' email: ' + email + ' fecha: ' + date + ' la ip: ' + myIP + ' el pais es: ' + country
       }
       const transport = nodemailer.createTransport(config);
